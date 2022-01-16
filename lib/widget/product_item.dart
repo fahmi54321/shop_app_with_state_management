@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../screens/product_details_screen.dart';
+
 class ProductItem extends StatelessWidget {
   final String id;
   final String title;
@@ -19,9 +21,17 @@ class ProductItem extends StatelessWidget {
         10,
       ),
       child: GridTile(
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.fill,
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              ProductDetailsScreen.routeName,
+              arguments: id,
+            );
+          },
+          child: Image.network(
+            imageUrl,
+            fit: BoxFit.fill,
+          ),
         ),
         footer: GridTileBar(
           backgroundColor: Colors.black87,
