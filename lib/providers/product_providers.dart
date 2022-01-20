@@ -39,7 +39,7 @@ class ProductProvider with ChangeNotifier {
 
 
   List<Product> get favoritesItems{
-    return _items.where((element) => element.isFavorite).toList(); //todo 5 (finish)
+    return _items.where((element) => element.isFavorite).toList();
   }
 
   List<Product> get items {

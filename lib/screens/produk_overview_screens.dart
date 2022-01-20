@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widget/product_grid.dart';
-import '../providers/product_providers.dart';
 import 'package:provider/provider.dart';
+import '../widget/product_grid.dart';
+import '../widget/badge.dart';
+import '../providers/cart_providers.dart';
 
 enum FilterOptions {
   Favorites,
@@ -16,7 +17,7 @@ class ProductOverviewScreens extends StatefulWidget {
 class _ProductOverviewScreensState extends State<ProductOverviewScreens> {
   @override
   Widget build(BuildContext context) {
-    var _showOnlyFavorites = false; //todo 1
+    var _showOnlyFavorites = false;
 
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +25,8 @@ class _ProductOverviewScreensState extends State<ProductOverviewScreens> {
         actions: [
           PopupMenuButton(
             onSelected: (FilterOptions selectedValue) {
-              setState(() { //todo 2
+              setState(() {
+                //todo 2
                 if (selectedValue == FilterOptions.Favorites) {
                   _showOnlyFavorites = true;
                 } else {
@@ -43,10 +45,24 @@ class _ProductOverviewScreensState extends State<ProductOverviewScreens> {
               ),
             ],
             icon: Icon(Icons.more_vert),
-          )
+          ),
+
+          //todo 10 (hanya ini provider karena fitur lainnya belum butuh provider) (finish)
+          Consumer<CartProvider>(
+            builder: (_, cart, ch) => Badge(
+              child: ch!,
+              value: cart.itemCount.toString(),
+            ),
+            child: IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+              ),
+              onPressed: () {},
+            ),
+          ),
         ],
       ),
-      body: ProductsGrid(_showOnlyFavorites), //todo 3 (next product_grid)
+      body: ProductsGrid(_showOnlyFavorites),
     );
   }
 }
