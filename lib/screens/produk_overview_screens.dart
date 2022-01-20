@@ -8,25 +8,31 @@ enum FilterOptions {
   All,
 }
 
-class ProductOverviewScreens extends StatelessWidget {
+class ProductOverviewScreens extends StatefulWidget {
+  @override
+  State<ProductOverviewScreens> createState() => _ProductOverviewScreensState();
+}
+
+class _ProductOverviewScreensState extends State<ProductOverviewScreens> {
   @override
   Widget build(BuildContext context) {
-    // false berarti variabel ini tidak mengamati perubahan data pada class provider dan hanya memperoleh akses data dari provider
-    final productProvider=Provider.of<ProductProvider>(context, listen: false); // todo 9
+    var _showOnlyFavorites = false; //todo 1
 
     return Scaffold(
       appBar: AppBar(
         title: Text('MyShop'),
         actions: [
-          PopupMenuButton( // todo 1 buat popup menu button
-            onSelected: (FilterOptions selectedValue) { // todo 3 implement item jika di klik
-              if (selectedValue == FilterOptions.Favorites) { // todo 4 jika hanya menampilkan item favorites
-                productProvider.showFavoritesOnly(); // todo 10
-              } else { // todo 5 else untuk menampilkan semua item (next product_providers)
-                productProvider.showAll(); //todo 11 (finish)
-              }
+          PopupMenuButton(
+            onSelected: (FilterOptions selectedValue) {
+              setState(() { //todo 2
+                if (selectedValue == FilterOptions.Favorites) {
+                  _showOnlyFavorites = true;
+                } else {
+                  _showOnlyFavorites = false;
+                }
+              });
             },
-            itemBuilder: (_) => [ //todo 2 buat item opoup
+            itemBuilder: (_) => [
               PopupMenuItem(
                 child: Text('Only Favorites'),
                 value: FilterOptions.Favorites,
@@ -40,7 +46,7 @@ class ProductOverviewScreens extends StatelessWidget {
           )
         ],
       ),
-      body: ProductsGrid(),
+      body: ProductsGrid(_showOnlyFavorites), //todo 3 (next product_grid)
     );
   }
 }
