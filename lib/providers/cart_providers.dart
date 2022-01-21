@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//todo 1 create model
 class CartItem {
   final String id;
   final String title;
@@ -15,22 +14,30 @@ class CartItem {
   });
 }
 
-//todo 2
 class CartProvider with ChangeNotifier {
   //set
-  Map<String, CartItem> _items = {}; //todo 3
+  Map<String, CartItem> _items = {};
 
   //get
-  Map<String, CartItem> get items { //todo 4
+  Map<String, CartItem> get items {
     return {..._items};
   }
 
   //count items
   int get itemCount{
-    return _items.length; //todo 5
+    return _items.length;
   }
 
-  //todo 6 add cart (next main.dart)
+  //todo 2 (next main)
+  double get totalAmount{
+    var total = 0.0;
+    _items.forEach((key, value) {
+      total += value.price * value.quantity;
+    });
+
+    return total;
+  }
+
   void addItem(
     String productId,
     double price,

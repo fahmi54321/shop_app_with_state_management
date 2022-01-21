@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../widget/product_grid.dart';
 import '../widget/badge.dart';
 import '../providers/cart_providers.dart';
+import '../screens/cart_screen.dart';
 
 enum FilterOptions {
   Favorites,
@@ -28,7 +29,6 @@ class _ProductOverviewScreensState extends State<ProductOverviewScreens> {
           PopupMenuButton(
             onSelected: (FilterOptions selectedValue) {
               setState(() {
-                //todo 2
                 if (selectedValue == FilterOptions.Favorites) {
                   _showOnlyFavorites = true;
                 } else {
@@ -49,7 +49,6 @@ class _ProductOverviewScreensState extends State<ProductOverviewScreens> {
             icon: Icon(Icons.more_vert),
           ),
 
-          //todo 10 (hanya ini provider karena fitur lainnya belum butuh provider) (finish)
           Consumer<CartProvider>(
             builder: (_, cart, ch) => Badge(
               child: ch!,
@@ -59,7 +58,9 @@ class _ProductOverviewScreensState extends State<ProductOverviewScreens> {
               icon: Icon(
                 Icons.shopping_cart,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.routeName); // todo 4 (finish)
+              },
             ),
           ),
         ],
