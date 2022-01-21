@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider( //todo 7 (next product_item)
       providers: [
-        ChangeNotifierProvider(
-          create: (ctx) => ProductProvider(),
+        ChangeNotifierProvider.value(
+          value: ProductProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (ctx) => CartProvider(),
+        ChangeNotifierProvider.value(
+          value : CartProvider(),
         ),
       ],
       child: MaterialApp(

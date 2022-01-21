@@ -6,7 +6,12 @@ import '../screens/product_details_screen.dart';
 import '../providers/product.dart';
 import '../providers/cart_providers.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
+  @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context,listen: false);
@@ -37,10 +42,12 @@ class ProductItem extends StatelessWidget {
           ),
           leading: IconButton(
             icon: Icon(
-              product.isFavorite ? Icons.favorite : Icons.favorite_border,
+              product.isFavorite == true ? Icons.favorite : Icons.favorite_border,
             ),
             onPressed: () {
-              product.toggleFavoriteStatus();
+              setState(() {
+                product.toggleFavoriteStatus();
+              });
             },
             color: Theme.of(context).accentColor,
           ),

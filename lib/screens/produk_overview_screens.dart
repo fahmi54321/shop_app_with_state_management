@@ -15,9 +15,11 @@ class ProductOverviewScreens extends StatefulWidget {
 }
 
 class _ProductOverviewScreensState extends State<ProductOverviewScreens> {
+
+  var _showOnlyFavorites = false;
+
   @override
   Widget build(BuildContext context) {
-    var _showOnlyFavorites = false;
 
     return Scaffold(
       appBar: AppBar(
