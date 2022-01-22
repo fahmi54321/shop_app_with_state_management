@@ -28,7 +28,6 @@ class CartProvider with ChangeNotifier {
     return _items.length;
   }
 
-  //todo 2 (next main)
   double get totalAmount{
     var total = 0.0;
     _items.forEach((key, value) {
@@ -65,6 +64,11 @@ class CartProvider with ChangeNotifier {
                 price: price,
               ));
     }
+    notifyListeners();
+  }
+ //todo 2 (next cart_screen)
+  void removeItem(String productId){
+    _items.remove(productId);
     notifyListeners();
   }
 }
