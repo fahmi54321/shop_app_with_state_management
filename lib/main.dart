@@ -5,6 +5,7 @@ import './screens/product_details_screen.dart';
 import './screens/cart_screen.dart';
 import './providers/product_providers.dart';
 import './providers/cart_providers.dart';
+import './providers/order_providers.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,13 +18,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      //todo 7 (next product_item)
       providers: [
         ChangeNotifierProvider.value(
           value: ProductProvider(),
         ),
         ChangeNotifierProvider.value(
           value: CartProvider(),
+        ),
+        ChangeNotifierProvider.value( //todo 3 (finish)
+          value: OrderProvider(),
         ),
       ],
       child: MaterialApp(
@@ -39,7 +42,7 @@ class MyApp extends StatelessWidget {
         home: ProductOverviewScreens(),
         routes: {
           ProductDetailsScreen.routeName: (ctx) => ProductDetailsScreen(),
-          CartScreen.routeName: (ctx) => CartScreen(), // todo 3 (next product_overview_screens)
+          CartScreen.routeName: (ctx) => CartScreen(),
         },
       ),
     );
