@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_providers.dart';
+import '../widget/cart_item_widget.dart';
 
-//todo 1 (next cart_providers)
 class CartScreen extends StatelessWidget {
   static const routeName = '/cart';
 
   @override
   Widget build(BuildContext context) {
-    final cart = Provider.of<CartProvider>(context);
+    final cart = Provider.of<CartProvider>(context); //todo 2
 
     return Scaffold(
       appBar: AppBar(
@@ -46,7 +46,22 @@ class CartScreen extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
+
+          SizedBox(
+            height: 10,
+          ),
+          Expanded( //todo 3 (finish)
+            child: ListView.builder(
+              itemBuilder: (ctx,i) => CartItemWidget(
+                cart.items.values.toList()[i].id,
+                cart.items.values.toList()[i].price,
+                cart.items.values.toList()[i].quantity,
+                cart.items.values.toList()[i].title,
+              ),
+              itemCount: cart.items.length,
+            ),
+          ),
         ],
       ),
     );
