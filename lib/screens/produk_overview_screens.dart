@@ -4,6 +4,7 @@ import '../widget/product_grid.dart';
 import '../widget/badge.dart';
 import '../providers/cart_providers.dart';
 import '../screens/cart_screen.dart';
+import '../widget/app_drawer.dart';
 
 enum FilterOptions {
   Favorites,
@@ -59,13 +60,14 @@ class _ProductOverviewScreensState extends State<ProductOverviewScreens> {
                 Icons.shopping_cart,
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed(CartScreen.routeName); // todo 4 (finish)
+                Navigator.of(context).pushNamed(CartScreen.routeName);
               },
             ),
           ),
         ],
       ),
       body: ProductsGrid(_showOnlyFavorites),
+      drawer: AppDrawer(), // todo 2 (next orders_screen)
     );
   }
 }

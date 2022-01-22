@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/order_providers.dart';
 import '../widget/order_item_widget.dart';
+import '../widget/app_drawer.dart';
 
 class OrderScreen extends StatelessWidget {
-  const OrderScreen({Key? key}) : super(key: key);
+  static const routeName = '/orders';
 
-  //todo 1 (next order_item_widget)
   @override
   Widget build(BuildContext context) {
     final orderData = Provider.of<OrderProvider>(context);
@@ -21,6 +21,7 @@ class OrderScreen extends StatelessWidget {
         ),
         itemCount: orderData.orders.length,
       ),
+      drawer: AppDrawer(), //todo 3 (finish)
     );
   }
 }
