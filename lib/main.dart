@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           value: OrderProvider(),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp( //
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.purple,
